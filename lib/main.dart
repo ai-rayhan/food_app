@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/constants/constant.dart';
 import './screens/auth_screen.dart';
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,10 @@ class MyApp extends StatelessWidget {
         //   // 50:Color(0XFF0AA1DD),
         // }),
         // fontFamily: 'Poppins',
+       iconTheme: IconThemeData(
+        color: primaryColorBlue,
+       ),
+        scaffoldBackgroundColor: Color.fromARGB(255, 229, 246, 250),
         textTheme: const TextTheme(
           titleLarge: TextStyle(
             fontSize: 20,

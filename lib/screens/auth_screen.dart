@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/constants/constant.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/foundation.dart';
@@ -10,13 +11,12 @@ enum AuthMode { signup, login }
 class AuthScreen extends StatelessWidget {
   static const routeName = '/auth';
 
+  const AuthScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
-    // transformConfig.translate(-10.0);
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -31,36 +31,18 @@ class AuthScreen extends StatelessWidget {
                     //     colorFilter: ColorFilter.mode(
                     //         Color(0xff0AA1DD), BlendMode.color)),
                     gradient: LinearGradient(colors: [
-                       Color.fromARGB(255, 18, 171, 231),
+                      Color(0xff79DBE8),
                       Color.fromARGB(255, 32, 153, 209),
-                     
                     ]),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(120))),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 10, right: deviceSize.width / 8),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                       const Text(
-                        "HI,WELCOME",
-                        style: TextStyle(
-                              fontSize: 30,
-                            ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                           Text(
-                            "",
-                          
-                          ),
-                          
-                        ],
-                      )
-                    ],
+                child: const Center(
+                  child: Text(
+                    "HI,WELCOME",
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
                   ),
                 ),
               ),
@@ -133,19 +115,19 @@ class _AuthCardState extends State<AuthCard>
       key: _formKey,
       child: SingleChildScrollView(
         child: Container(
-          margin: kIsWeb?EdgeInsets.symmetric( horizontal: deviceSize.width / 3, vertical: 50):EdgeInsets.symmetric( horizontal: deviceSize.width /8, vertical: 50),
+          margin: kIsWeb
+              ? EdgeInsets.symmetric(
+                  horizontal: deviceSize.width / 3, vertical: 50)
+              : EdgeInsets.symmetric(
+                  horizontal: deviceSize.width / 8, vertical: 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-               Text(
-                            "FOOD APP",
-                            style: Theme.of(context).textTheme.bodyLarge
-                          ),
+              Text("FOOD APP", style: Theme.of(context).textTheme.bodyLarge),
               SizedBox(
                 width: 100,
                 child: Image.asset('assets/images/logo.png'),
               ),
-             
               TextFormField(
                 decoration: decoration('E-mail', Icons.email),
                 keyboardType: TextInputType.emailAddress,
@@ -168,14 +150,14 @@ class _AuthCardState extends State<AuthCard>
                   if (value!.isEmpty || value.length < 5) {
                     return 'Password is too short!';
                   }
+                  return null;
                 },
                 onSaved: (value) {
                   _authData['password'] = value!;
                 },
               ),
-              const Divider(),
+              if (_authMode == AuthMode.signup) const Divider(),
               if (_authMode == AuthMode.signup)
-              
                 TextFormField(
                   enabled: _authMode == AuthMode.signup,
                   decoration: decoration('Confim Password', Icons.lock),
@@ -185,6 +167,7 @@ class _AuthCardState extends State<AuthCard>
                           if (value != _passwordController.text) {
                             return 'Passwords do not match!';
                           }
+                          return null;
                         }
                       : null,
                 ),
@@ -217,7 +200,21 @@ class _AuthCardState extends State<AuthCard>
               const SizedBox(
                 height: 20,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.end,children: [if (_authMode == AuthMode.signup)Text("You have account",style: Theme.of(context).textTheme.bodySmall,)else Text("Not account yet!",style: Theme.of(context).textTheme.bodySmall,)],),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (_authMode == AuthMode.signup)
+                    Text(
+                      "You have account",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    )
+                  else
+                    Text(
+                      "Not account yet!",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    )
+                ],
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -226,17 +223,15 @@ class _AuthCardState extends State<AuthCard>
                 children: [
                   RawMaterialButton(
                     onPressed: _switchAuthMode,
-                    
-                    fillColor: Color(0xffE8F9FD),
+                    fillColor: const Color(0xffE8F9FD),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
-                      
                     ),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 10),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    child: Text(
-                        '${_authMode == AuthMode.login ? 'SIGNUP' : 'LOGIN'}'),
+                    child:
+                        Text(_authMode == AuthMode.login ? 'SIGNUP' : 'LOGIN'),
                   ),
                 ],
               ),
@@ -244,7 +239,7 @@ class _AuthCardState extends State<AuthCard>
                 height: 20,
               ),
               const Divider(),
-               Center(child: Text('OR')),
+              const Center(child: Text('OR')),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -283,17 +278,17 @@ class _AuthCardState extends State<AuthCard>
       filled: true,
       fillColor: const Color(0xffE8F9FD),
       labelText: labeltext,
-      labelStyle: const TextStyle(color: Color(0XFF0AA1DD)),
+      labelStyle: TextStyle(color: primaryColor),
       prefixIcon: Icon(
         icon,
-        color: const Color(0XFF0AA1DD),
+        // color: primaryColor,
       ),
-      enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0XFF0AA1DD), width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
-      focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0XFF0AA1DD)),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: primaryColor, width: 1),
+          borderRadius: const BorderRadius.all(Radius.circular(50))),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: primaryColorBlue),
+          borderRadius: const BorderRadius.all(Radius.circular(50))),
     );
   }
 }
