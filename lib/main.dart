@@ -12,10 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Education App',
+      title: 'Food App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Poppins',
+        primarySwatch:Colors.blue,
+        //   MaterialColor(0XFF0AA1DD, {
+        //   // 50:Color(0XFF0AA1DD),
+        // }),
+        // fontFamily: 'Poppins',
         textTheme: const TextTheme(
           titleLarge: TextStyle(
             fontSize: 20,
@@ -23,17 +26,22 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           bodyLarge: TextStyle(
-            fontSize: 20,
+            fontSize: 25,
             fontWeight: FontWeight.w500,
+            color: Color(0XFF0AA1DD)
           ),
           bodyMedium: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
+          bodySmall: TextStyle(
+            fontSize: 12,
+            color: Color(0XFF0AA1DD)
+          ),
           displayMedium: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 18,
-            color: Colors.black,
+            color: const Color(0XFF0AA1DD),
           ),
         ),
       ),
