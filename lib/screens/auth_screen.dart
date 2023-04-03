@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/constants/constant.dart';
+import 'package:food_app/screens/products_overview_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/foundation.dart';
@@ -85,11 +86,13 @@ class _AuthCardState extends State<AuthCard>
       _isLoading = true;
     });
     if (_authMode == AuthMode.login) {
-      await Provider.of<Auth>(context, listen: false)
-          .signin(_authData['email']!, _authData['password']!);
+      // await Provider.of<Auth>(context, listen: false)
+      //     .signin(_authData['email']!, _authData['password']!);
+      Navigator.pushReplacementNamed(context, ProductsOverviewScreen.routeName);
     } else {
-      await Provider.of<Auth>(context, listen: false)
-          .signup(_authData['email']!, _authData['password']!);
+      Navigator.pushReplacementNamed(context, ProductsOverviewScreen.routeName);
+      // await Provider.of<Auth>(context, listen: false)
+      //     .signup(_authData['email']!, _authData['password']!);
     }
     setState(() {
       _isLoading = false;
