@@ -16,34 +16,34 @@ class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
         id: 'p1',
-        title: 'Red Shirt',
+        title: 'Burger',
         description: 'A red shirt - it is pretty red!',
         price: 29.99,
-        imageUrl: 'assets/images/logo.png'
+        imageUrl: 'assets/images/burger.jpg'
         
         ),
     Product(
         id: 'p2',
-        title: 'Trousers',
+        title: 'Burrito',
         description: 'A nice pair of trousers.',
         price: 59.99,
-        imageUrl: 'assets/images/logo.png'
+        imageUrl: 'assets/images/burrito.jpg'
         
         ),
     Product(
         id: 'p3',
-        title: 'Yellow Scarf',
+        title: 'Fish',
         description: 'Warm and cozy - exactly what you need for the winter.',
         price: 19.99,
-        imageUrl: 'assets/images/logo.png'
+        imageUrl: 'assets/images/fish.png'
         
         ),
     Product(
         id: 'p4',
-        title: 'A Pan',
+        title: 'Sea food',
         description: 'Prepare any meal you want.',
         price: 49.99,
-        imageUrl: 'assets/images/logo.png'
+        imageUrl: 'assets/images/sea_food.png'
         ),
   ];
   bool isFavorite = false;

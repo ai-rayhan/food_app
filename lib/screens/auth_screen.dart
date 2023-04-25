@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 
 import '../provider/auth.dart';
+import '../widgets/bottom_navigation_bar.dart';
 
 enum AuthMode { signup, login }
 
@@ -88,9 +89,15 @@ class _AuthCardState extends State<AuthCard>
     if (_authMode == AuthMode.login) {
       // await Provider.of<Auth>(context, listen: false)
       //     .signin(_authData['email']!, _authData['password']!);
-      Navigator.pushReplacementNamed(context, ProductsOverviewScreen.routeName);
+      Navigator.push<void>(
+    context,
+    MaterialPageRoute<void>(
+      builder: (BuildContext context) => AuthScreen(),
+    ),
+  );
+      Navigator.pushReplacementNamed(context, MyBottomNavBar.routeName);
     } else {
-      Navigator.pushReplacementNamed(context, ProductsOverviewScreen.routeName);
+      // Navigator.pushReplacementNamed(context, ProductsOverviewScreen.routeName);
       // await Provider.of<Auth>(context, listen: false)
       //     .signup(_authData['email']!, _authData['password']!);
     }
